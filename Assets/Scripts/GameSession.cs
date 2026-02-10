@@ -1,9 +1,12 @@
 using System;
 using UnityEngine;
+using TMPro;
 
 public class GameSession : MonoBehaviour
 {
     [SerializeField] public int playerLives = 3;
+
+    [SerializeField] TextMeshProUGUI livesText;
 
     private void Awake()
     {
@@ -17,6 +20,11 @@ public class GameSession : MonoBehaviour
         {
             DontDestroyOnLoad(gameObject);
         }
+    }
+
+    private void Start()
+    {
+        livesText.text = playerLives.ToString();
     }
 
     public void ProcessPlayerDeath()
@@ -36,8 +44,9 @@ public class GameSession : MonoBehaviour
         Debug.Log("Perdeu");
     }
 
-    private void TakeLife()
+    public void TakeLife()
     {
         playerLives--;
+        livesText.text = playerLives.ToString();
     }
 }

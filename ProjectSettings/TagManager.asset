@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - PlayerHitArea
+  - EnemyHitArea
   layers:
   - Default
   - TransparentFX
@@ -12,10 +14,10 @@ TagManager:
   - Water
   - UI
   - Player
-  - EnemyBackground
-  - 
-  - 
-  - 
+  - OffLimitsBackground
+  - Bullet
+  - HitArea
+  - Foreground
   - 
   - 
   - 
@@ -52,6 +54,9 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 2300769809
+    locked: 0
+  - name: Bullet
+    uniqueID: 603278825
     locked: 0
   m_RenderingLayers:
   - Default
