@@ -5,8 +5,10 @@ using TMPro;
 public class GameSession : MonoBehaviour
 {
     [SerializeField] public int playerLives = 3;
+    [SerializeField] public float playerMoney = 0;
 
     [SerializeField] TextMeshProUGUI livesText;
+    [SerializeField] TextMeshProUGUI moneyText;
 
     private void Awake()
     {
@@ -25,6 +27,7 @@ public class GameSession : MonoBehaviour
     private void Start()
     {
         livesText.text = playerLives.ToString();
+        moneyText.text = "$" + playerMoney.ToString("F2");
     }
 
     public void ProcessPlayerDeath()
@@ -48,5 +51,17 @@ public class GameSession : MonoBehaviour
     {
         playerLives--;
         livesText.text = playerLives.ToString();
+    }
+
+    public void SpendMoney(float price)
+    {
+        playerMoney -= price;
+        moneyText.text = "$" + playerMoney.ToString("F2");
+    }
+
+    public void AddMoney(float amount)
+    {
+        playerMoney += amount;
+        moneyText.text = "$" + playerMoney.ToString("F2");
     }
 }

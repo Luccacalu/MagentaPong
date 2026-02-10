@@ -3,11 +3,13 @@ using UnityEngine;
 public class SimpleBullet : MonoBehaviour
 {
     private Rigidbody2D rb;
+    private GameSession gameSession;
     [SerializeField] public float bulletSpeed = 10f;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        gameSession = Object.FindFirstObjectByType<GameSession>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -34,11 +36,12 @@ public class SimpleBullet : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("PlayerHitArea"))
         {
-            Object.FindFirstObjectByType<GameSession>().TakeLife();
+            gameSession.TakeLife();
             Destroy(gameObject);
         }
         else if (collision.gameObject.CompareTag("EnemyHitArea"))
         {
+            gameSession.AddMoney(0.05f);
             Destroy(gameObject);
         }
     }
