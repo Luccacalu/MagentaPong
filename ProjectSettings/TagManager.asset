@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PlayerHitArea
   - EnemyHitArea
+  - Foreground
   layers:
   - Default
   - TransparentFX

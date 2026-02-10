@@ -2,7 +2,7 @@
 - Project name: MagentaPong
 - Unity version: Unity 6000.3.7f1
 - Active game object:
-  - Name: Button
+  - Name: SimpleBullet
   - Tag: Untagged
-  - Layer: UI
+  - Layer: Bullet
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->

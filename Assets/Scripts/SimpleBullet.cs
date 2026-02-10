@@ -10,15 +10,15 @@ public class SimpleBullet : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         gameSession = Object.FindFirstObjectByType<GameSession>();
+        if (rb.linearVelocity == Vector2.zero)
+        {
+            rb.linearVelocity = Vector2.right * bulletSpeed;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.IsTouchingLayers(LayerMask.GetMask("Foreground")))
-        {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, -rb.linearVelocity.y);
-        }
-        else if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
             Vector2 paddleCenter = collision.transform.position;
             Vector2 hitPoint = collision.contacts[0].point;
@@ -28,11 +28,8 @@ public class SimpleBullet : MonoBehaviour
 
             float angle = hitOffset / (paddleHeight / 2);
 
-            Vector2 newDirection = new Vector2(-1, angle).normalized;
+            Vector2 newDirection = new Vector2(1f, angle).normalized;
             rb.linearVelocity = newDirection * bulletSpeed;
-
-            Vector2 newPosition = new Vector2(transform.position.x, hitPoint.y);
-            transform.position = newPosition;
         }
         else if (collision.gameObject.CompareTag("PlayerHitArea"))
         {
@@ -46,12 +43,16 @@ public class SimpleBullet : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        if (rb.linearVelocity.magnitude > 0 && Mathf.Abs(rb.linearVelocity.magnitude - bulletSpeed) > 0.1f)
+        {
+            rb.linearVelocity = rb.linearVelocity.normalized * bulletSpeed;
+        }
+    }
+
     void Update()
     {
         
-    }
-
-    private void FixedUpdate()
-    {
     }
 }
