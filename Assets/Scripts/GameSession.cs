@@ -30,26 +30,26 @@ public class GameSession : MonoBehaviour
         moneyText.text = "$" + playerMoney.ToString("F2");
     }
 
-    public void ProcessPlayerDeath()
+    public void ProcessPlayerDamage(int amount)
     {
-        if (playerLives > 1)
+        if (playerLives > amount)
         {
-            TakeLife();
+            TakeLife(amount);
         }
         else
         {
-            ResetGame();
+            PlayerDeath();
         }
     }
 
-    private void ResetGame()
+    private void PlayerDeath()
     {
         Debug.Log("Perdeu");
     }
 
-    public void TakeLife()
+    private void TakeLife(int amount)
     {
-        playerLives--;
+        playerLives -= amount;
         livesText.text = playerLives.ToString();
     }
 

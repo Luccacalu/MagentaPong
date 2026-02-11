@@ -7,6 +7,9 @@ TagManager:
   - PlayerHitArea
   - EnemyHitArea
   - Foreground
+  - EnemyDefense
+  - PlayerDefense
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -58,6 +61,9 @@ TagManager:
     locked: 0
   - name: Bullet
     uniqueID: 603278825
+    locked: 0
+  - name: Infos
+    uniqueID: 2769268035
     locked: 0
   m_RenderingLayers:
   - Default

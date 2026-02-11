@@ -23,7 +23,7 @@ public class SimpleTurret : MonoBehaviour
             Vector2 normalizedDirection = direction.normalized;
 
             GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-            bullet.GetComponent<Rigidbody2D>().linearVelocity = normalizedDirection * bullet.GetComponent<SimpleBullet>().bulletSpeed;
+            bullet.GetComponent<Rigidbody2D>().linearVelocity = normalizedDirection;
             canShoot = false;
             StartCoroutine(bulletWaitTimer());
         }
