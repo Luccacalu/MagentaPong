@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4837784764867199756}
   - component: {fileID: 4060617711943547511}
   - component: {fileID: 6371316294809576139}
+  - component: {fileID: -4367224590464665442}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -31,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: -7, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 1, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -227,7 +228,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   rb: {fileID: 4837784764867199756}
-  moveSpeed: 15
+  moveSpeed: 5
   contactFilter:
     useTriggers: 0
     useLayerMask: 0
@@ -242,3 +243,15 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
+--- !u!114 &-4367224590464665442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6011625875042061892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86d9d9ad364c31f48b598113c62ad1a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerPaddle

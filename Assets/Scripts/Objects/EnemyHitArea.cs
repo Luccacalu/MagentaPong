@@ -11,7 +11,7 @@ public class EnemyHitArea : MonoBehaviour, IDamageable
         gameSession = Object.FindFirstObjectByType<GameSession>();
     }
 
-    public bool TakeDamage(int amount)
+    public HitResult TakeDamage(int amount, bool hasPlayerSignature, Collision2D collision = null)
     {
         float calculatedValue = areaValueMultiplier * amount;
         float finalValue = Mathf.Min(calculatedValue, maxValuePerBullet);
@@ -21,6 +21,11 @@ public class EnemyHitArea : MonoBehaviour, IDamageable
             gameSession.AddMoney(finalValue);
         }
 
-        return true;
+        HitResult result = new HitResult();
+
+        result.destroyBullet = true;
+        result.isPlayerTouched = null;
+
+        return result;
     }
 }

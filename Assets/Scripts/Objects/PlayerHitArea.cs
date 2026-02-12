@@ -9,10 +9,15 @@ public class PlayerHitArea : MonoBehaviour, IDamageable
         gameSession = Object.FindFirstObjectByType<GameSession>();
     }
 
-    public bool TakeDamage(int amount)
+    public HitResult TakeDamage(int amount, bool hasPlayerSignature, Collision2D collision = null)
     {
         gameSession.ProcessPlayerDamage(amount);
 
-        return true;
+        HitResult result = new HitResult();
+
+        result.isPlayerTouched = null;
+        result.destroyBullet = true;
+
+        return result;
     }
 }

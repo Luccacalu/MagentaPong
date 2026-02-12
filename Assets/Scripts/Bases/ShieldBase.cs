@@ -8,11 +8,15 @@ public abstract class ShieldBase : MonoBehaviour, IDamageable
 
     protected TextMeshPro shieldLifeText;
     protected GameSession gameSession;
+    protected TeamMember myTeam;
+
+    protected SpriteRenderer _mySpriteRenderer;
 
     protected virtual void Awake()
     {
         gameSession = Object.FindFirstObjectByType<GameSession>();
         shieldLifeText = GetComponentInChildren<TextMeshPro>();
+        myTeam = GetComponent<TeamMember>();
     }
 
     protected virtual void Start()
@@ -20,8 +24,18 @@ public abstract class ShieldBase : MonoBehaviour, IDamageable
         UpdateUI();
     }
 
-    public virtual bool TakeDamage(int damage)
+    public virtual HitResult TakeDamage(int damage, bool hasPlayerSignature, Collision2D collision = null)
     {
+        HitResult result = new HitResult();
+
+        result.destroyBullet = false;
+        result.isPlayerTouched = null;
+
+        if (!hasPlayerSignature && myTeam.Team == Team.Enemy)
+        {
+            return result;
+        }
+
         shieldLife -= damage;
         UpdateUI();
 
@@ -30,7 +44,7 @@ public abstract class ShieldBase : MonoBehaviour, IDamageable
             OnShieldDestroyed();
         }
 
-        return false;
+        return result;
     }
 
     protected virtual void UpdateUI()
